@@ -1,3 +1,13 @@
+/**
+ * Tracks whether the share menu is visible or not.
+ *
+ * This variable is used to track whether the share menu is currently visible
+ * or not. It is used to determine whether or not to attach an event listener
+ * to the document to close the share menu when a click event is triggered
+ * outside of the share menu.
+ *
+ * @type {boolean}
+ */
 let isShareMenuVisible = false;
 
 /**
@@ -141,15 +151,13 @@ function getShareProfileTemplate() {
   return /*html*/ `
         <div id="share-menu" class="share-menu d_none">
             <span class="share-option-text">SHARE</span>
-            <a href="https://www.facebook.com/" target="_blank"><span class="share-option-facebook">${getSVGForShareOption(
+            <a href="https://www.facebook.com/" target="_blank" class="share-option-facebook">${getSVGForShareOption(
               "facebook"
-            )}</span></a>
-            <a href="https://x.com/" target="_blank"><span class="share-option-twitter">${getSVGForShareOption(
-              "twitter"
-            )}</span></a>
-            <a href="https://pinterest.com/" target="_blank"><span class="share-option-pinterest">${getSVGForShareOption(
+            )}</a>
+            <a href="https://x.com/" target="_blank" class="share-option-twitter">${getSVGForShareOption("twitter")}</a>
+            <a href="https://pinterest.com/" target="_blank" class="share-option-pinterest">${getSVGForShareOption(
               "pinterest"
-            )}</span></a>
+            )}</a>
         </div>
     `;
 }
