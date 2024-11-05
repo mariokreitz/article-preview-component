@@ -110,15 +110,18 @@ body {
   transition: all 75ms;
 }
 
-.btn:focus-visible {
-  outline-color: var(--light-grayish-blue);
-}
-
+.btn:focus,
 .btn:active {
   background-color: var(--desaturated-dark-blue);
 }
+
+.btn:focus path,
 .btn:active path {
   fill: white;
+}
+
+.btn:focus-visible {
+  outline-color: var(--light-grayish-blue);
 }
 
 .btn-share {
@@ -163,6 +166,12 @@ body {
   display: flex;
   align-items: center;
   height: 22px;
+}
+
+.share-option-facebook:hover path,
+.share-option-twitter:hover path,
+.share-option-pinterest:hover path {
+  fill: var(--grayish-blue);
 }
 
 .d_none {
