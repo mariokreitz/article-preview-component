@@ -28,8 +28,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Add solution URL here](https://www.frontendmentor.io/solutions/article-preview-component-ySwkOjsDLk)
+- Live Site URL: [Add live site URL here](https://fm-article-preview-component-mk.netlify.app/)
 
 ## My process
 
@@ -97,6 +97,6 @@ function closeShareMenuOnClickOutside(event) {
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
+- Website - [www.mario-kreitz.dev](https://www.mario-kreitz.dev)
+- Frontend Mentor - [@mariokreitz](https://www.frontendmentor.io/profile/mariokreitz)
+- LinkedIN - [Mario Kreitz](https://www.linkedin.com/in/mario-kreitz-70b68b336/)
