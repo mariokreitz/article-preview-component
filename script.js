@@ -1,3 +1,5 @@
+let isShareMenuVisible = false;
+
 /**
  * Initializes the page by loading the article preview template.
  *
@@ -7,6 +9,7 @@
  */
 function init() {
   loadArticlePreviewTemplate();
+  loadShareMenu();
 }
 
 /**
@@ -24,12 +27,81 @@ function loadArticlePreviewTemplate() {
   articleContainer.innerHTML = getArticlePreviewTemplate();
 }
 
+/**
+ * Loads the share profile template into the share container element.
+ *
+ * This function selects the element with the id "profile-share" from the DOM.
+ * If the element exists, it sets its innerHTML to the value returned by the
+ * getShareProfileTemplate function, which contains the HTML structure of the
+ * share profile template.
+ */
+function loadShareMenu() {
+  const shareContainer = document.getElementById("profile-share");
+  if (!shareContainer) return;
+
+  shareContainer.innerHTML += getShareProfileTemplate();
+}
+
+/**
+ * Toggles the visibility of the share menu.
+ *
+ * This function is called when the user clicks the share button. It toggles the
+ * visibility of the share menu and adds or removes an event listener on the
+ * document to close the share menu when a click event is triggered outside of
+ * the share menu.
+ */
+function toggleShareMenu() {
+  const shareMenuElement = document.getElementById("share-menu");
+  if (!shareMenuElement) return;
+
+  shareMenuElement.classList.toggle("d_none");
+  isShareMenuVisible = !isShareMenuVisible;
+
+  if (isShareMenuVisible) document.addEventListener("click", closeShareMenuOnClickOutside);
+  else document.removeEventListener("click", closeShareMenuOnClickOutside);
+}
+
+/**
+ * Closes the share menu when the window loses focus.
+ *
+ * This function is called when the window loses focus. It checks if the share
+ * menu is visible and if so, calls toggleShareMenu to close the share menu.
+ */
+window.addEventListener("blur", () => {
+  if (isShareMenuVisible) toggleShareMenu();
+});
+
+/**
+ * Closes the share menu when a click event is triggered outside of the share
+ * menu.
+ *
+ * This function is called when a click event is triggered anywhere on the
+ * document. It checks if the click target is outside of the share menu and
+ * its containing elements. If so, it calls toggleShareMenu to close the
+ * share menu.
+ * @param {Event} event The click event object.
+ */
+function closeShareMenuOnClickOutside(event) {
+  const target = event.target;
+  const shareMenu = document.getElementById("share-menu");
+  const isClickOutsideShareMenu =
+    !shareMenu.contains(target) && target.id !== "share-button" && !target.closest("#share-button svg");
+  if (isClickOutsideShareMenu) toggleShareMenu();
+}
+
+/**
+ * Returns the HTML structure for the article preview component as a string.
+ *
+ * The HTML structure returned by this function is used to populate the
+ * container element when the page is loaded. It includes the image, heading,
+ * text, and footer elements that make up the article preview component.
+ *
+ * @return {string} The HTML structure for the article preview component.
+ */
 function getArticlePreviewTemplate() {
   return /*html*/ `
-    <div class="card">
-        <div class="card-image">
-            <img src="./images/drawers.jpg" alt="Green drawer with pictures and a wheat-filled vessel on top" />
-        </div>
+    <div class="card" role="article" aria-label="Shift the overall look and feel by adding these wonderful touches to furniture in your home">
+        <img class="card-image" src="./images/drawers.jpg" alt="Green drawer with pictures and a wheat-filled vessel on top" />
         <div class="card-body">
             <div class="card-body-heading">
                 <h1>Shift the overall look and feel by adding these wonderful touches to furniture in your home</h1>
@@ -39,20 +111,46 @@ function getArticlePreviewTemplate() {
             </div>
             <div class="card-body-footer">
                 <div class="profile-card">
-                    <div class="profile-image">
-                        <img src="./images/avatar-michelle.jpg" alt="Profile Image" />
-                    </div>
+                    <img class="profile-image" src="./images/avatar-michelle.jpg" alt="Profile Image" />
                     <div class="profile-info">
                         <h2>Michelle Appleton</h2>
                         <p>28 Jun 2020</p>
                     </div>
                 </div>
-                <div class="profile-share">
-                    ${getSVGForShareOption("share")}
+                <div id="profile-share" class="profile-share">
+                    <button type="button" onclick="toggleShareMenu()" id="share-button" class="btn btn-share" aria-label="Share this article">${getSVGForShareOption(
+                      "share"
+                    )}</button>
                 </div>
             </div>
         </div>
     </div>
+    `;
+}
+
+/**
+ * Returns the HTML structure for the share profile component as a string.
+ *
+ * The HTML structure returned by this function is used to populate the
+ * .share-options element when the share button is clicked. It includes
+ * the text "SHARE" and the Facebook, Twitter, and Pinterest share options.
+ *
+ * @return {string} The HTML structure for the share profile component.
+ */
+function getShareProfileTemplate() {
+  return /*html*/ `
+        <div id="share-menu" class="share-menu d_none">
+            <span class="share-option-text">SHARE</span>
+            <a href="https://www.facebook.com/" target="_blank"><span class="share-option-facebook">${getSVGForShareOption(
+              "facebook"
+            )}</span></a>
+            <a href="https://x.com/" target="_blank"><span class="share-option-twitter">${getSVGForShareOption(
+              "twitter"
+            )}</span></a>
+            <a href="https://pinterest.com/" target="_blank"><span class="share-option-pinterest">${getSVGForShareOption(
+              "pinterest"
+            )}</span></a>
+        </div>
     `;
 }
 
