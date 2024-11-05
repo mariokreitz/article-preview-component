@@ -110,31 +110,35 @@ function closeShareMenuOnClickOutside(event) {
  */
 function getArticlePreviewTemplate() {
   return /*html*/ `
-    <div class="card" role="article" aria-label="Shift the overall look and feel by adding these wonderful touches to furniture in your home">
-        <img class="card-image" src="./images/drawers.jpg" alt="Green drawer with pictures and a wheat-filled vessel on top" />
-        <div class="card-body">
-            <div class="card-body-heading">
+    <article class="card" aria-label="Shift the overall look and feel by adding these wonderful touches to furniture in your home">
+        <figure class="card-image">
+            <img src="./images/drawers.jpg" alt="Green drawer with pictures and a wheat-filled vessel on top" />
+        </figure>
+        <section class="card-body">
+            <header class="card-body-heading">
                 <h1>Shift the overall look and feel by adding these wonderful touches to furniture in your home</h1>
-            </div>
+            </header>
             <div class="card-body-text">
-                <p>Ever been in a room and felt like something was missing? Perhaps it felt slightly bare and uninviting.I&apos;ve got some simple tips to help you make any room feel complete.</p>
+                <p>Ever been in a room and felt like something was missing? Perhaps it felt slightly bare and uninviting. I've got some simple tips to help you make any room feel complete.</p>
             </div>
-            <div class="card-body-footer">
+            <footer class="card-body-footer">
                 <div class="profile-card">
-                    <img class="profile-image" src="./images/avatar-michelle.jpg" alt="Profile Image" />
-                    <div class="profile-info">
+                    <figure class="profile-image">
+                        <img src="./images/avatar-michelle.jpg" alt="Profile Image" />
+                    </figure>
+                    <figcaption class="profile-info">
                         <h2>Michelle Appleton</h2>
-                        <p>28 Jun 2020</p>
-                    </div>
+                        <time datetime="2020-06-28">28 Jun 2020</time>
+                    </figcaption>
                 </div>
                 <div id="profile-share" class="profile-share">
-                    <button type="button" onclick="toggleShareMenu()" id="share-button" class="btn btn-share" aria-label="Share this article">${getSVGForShareOption(
-                      "share"
-                    )}</button>
+                    <button type="button" onclick="toggleShareMenu()" id="share-button" class="btn btn-share" aria-label="Share this article">
+                        ${getSVGForShareOption("share")}
+                    </button>
                 </div>
-            </div>
-        </div>
-    </div>
+            </footer>
+        </section>
+    </article>
     `;
 }
 
