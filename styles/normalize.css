@@ -191,6 +191,7 @@ select {
   /* 1 */
   text-transform: none;
   font-family: inherit; /* 1 */
+  cursor: pointer;
 }
 
 /**
